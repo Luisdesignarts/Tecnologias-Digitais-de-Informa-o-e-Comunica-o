@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prática Guiada · Desenho de Fluxo Pedagógico</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #dce3ec;
+      --text: #1e293b;
+      --muted: #475569;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --amber: #b45309;
+      --amber-soft: #fef3c7;
+      --red: #b91c1c;
+      --red-soft: #fee2e2;
+      --green: #15803d;
+      --green-soft: #dcfce7;
+      --slate-soft: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    header {
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-size: 1.65rem;
+      color: #0f172a;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    h2 {
+      font-size: 1.18rem;
+      color: #0f172a;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 1.15rem;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    /* Cards de Contexto e Dados Mínimos */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .card h3 {
+      font-size: 0.95rem;
+      color: #0f172a;
+      margin-bottom: 0.45rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Diagrama de Fluxo Visual */
+    .flow-wrapper {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .flow-step {
+      width: 100%;
+      max-width: 640px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1.15rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .flow-step .role {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .flow-step strong {
+      display: block;
+      font-size: 0.96rem;
+      color: #0f172a;
+    }
+
+    .flow-step span {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .arrow {
+      font-size: 1.2rem;
+      color: #64748b;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    /* Caixa de Decisão */
+    .decision-box {
+      width: 100%;
+      max-width: 680px;
+      background: var(--purple-soft);
+      border: 1.5px dashed var(--purple);
+      border-radius: 10px;
+      padding: 0.95rem 1.15rem;
+    }
+
+    .decision-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--purple);
+      margin-bottom: 0.75rem;
+    }
+
+    .branches {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .branch {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.85rem;
+    }
+
+    .branch-label {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      margin-bottom: 0.3rem;
+    }
+
+    .branch-no .branch-label {
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .branch-yes .branch-label {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    /* Badges de Status */
+    .status {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .st-pendente { background: var(--slate-soft); color: #334155; }
+    .st-ajuste { background: var(--red-soft); color: var(--red); }
+    .st-analise { background: var(--primary-soft); color: var(--primary); }
+    .st-intervencao { background: var(--amber-soft); color: var(--amber); }
+    .st-concluido { background: var(--green-soft); color: var(--green); }
+
+    /* Tabelas */
+    .table-responsive {
+      overflow-x: auto;
+      margin-bottom: 1.25rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.8rem 0.95rem;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    tr:nth-child(even) td {
+      background: #fcfdff;
+    }
+
+    /* Callout Final */
+    .callout {
+      margin-top: 1.75rem;
+      background: var(--purple-soft);
+      border-left: 4px solid var(--purple);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+
+    .callout strong {
+      display: block;
+      color: #4c1d95;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .callout p {
+      font-size: 0.9rem;
+      color: #3b0764;
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 1.25rem; }
+      .branches { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .container { box-shadow: none; border: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <span class="tag">Prática Guiada · Desenho de Fluxo</span>
+      <h1>Gestão Digital de Entregas, Pendências e Devolutivas</h1>
+      <p class="subtitle">
+        Processo digital simples para substituir canais dispersos (WhatsApp, e-mail, papel) por um fluxo único que conecta o registro da entrega diretamente à intervenção pedagógica.
+      </p>
+    </header>
+
+    <!-- Objetivo e Dados Mínimos -->
+    <section class="grid-2">
+      <div class="card">
+        <h3>Objetivo do Fluxo</h3>
+        <p>
+          Centralizar o recebimento das atividades da turma, automatizar a identificação de pendências e transformar o status de cada entrega em ação pedagógica concreta (apoio, refacção ou avanço).
+        </p>
+      </div>
+      <div class="card">
+        <h3>Dados Mínimos Trafegados</h3>
+        <p>Campos obrigatórios para rastrear cada entrega sem sobrecarga:</p>
+        <div class="chips">
+          <span class="chip">Matrícula (ID)</span>
+          <span class="chip">Nome Completo</span>
+          <span class="chip">Turma</span>
+          <span class="chip">Cód. Atividade</span>
+          <span class="chip">Data/Hora</span>
+          <span class="chip">Arquivo/Link</span>
+          <span class="chip">Status</span>
+          <span class="chip">Devolutiva</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Diagrama do Fluxo -->
+    <h2>1. Diagrama do Fluxo e Pontos de Decisão</h2>
+    <section class="flow-wrapper" aria-label="Diagrama do processo de entrega">
+      <div class="flow-step">
+        <span class="role">Papel: Estudante</span>
+        <strong>1. Entrada em Canal Único</strong>
+        <span>Submete a atividade via formulário digital ou tarefa única no AVA (bloqueando envios informais).</span>
+      </div>
+
+      <div class="arrow">↓</div>
+
+      <!-- Decisão 1 -->
+      <div class="decision-box">
+        <div class="decision-title">PONTO DE DECISÃO 1 (Técnico): Campos completos e arquivo legível/aberto?</div>
+        <div class="branches">
+          <div class="branch branch-no">
+            <span class="branch-label">NÃO</span><br />
+            Recebe <span class="status st-ajuste">Devolvido para ajuste</span> e aviso automático para reenvio antes da correção.
+          </div>
+          <div class="branch branch-yes">
+            <span class="branch-label">SIM</span><br />
+            Segue para armazenamento padronizado e entra na fila de avaliação.
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow">↓</div>
+
+      <div class="flow-step">
+        <span class="role">Papel: Sistema (Nuvem + Planilha Mestra)</span>
+        <strong>2. Armazenamento e Registro Automático</strong>
+        <span>Salva em <code>Turma / Atividade / Matricula_Nome_Atividade</code> e marca como <span class="status st-analise">Em análise</span>. <em>(Sem envio até o prazo → <span class="status st-pendente">Pendente</span>)</em>.</span>
+      </div>
+
+      <div class="arrow">↓</div>
+
+      <!-- Decisão 2 -->
+      <div class="decision-box">
+        <div class="decision-title">PONTO DE DECISÃO 2 (Pedagógico): O estudante atingiu o objetivo de aprendizagem?</div>
+        <div class="branches">
+          <div class="branch branch-no">
+            <span class="branch-label">NÃO (Lacuna identificada)</span><br />
+            Marca <span class="status st-intervencao">Em intervenção</span>, envia devolutiva orientadora com rubrica e abre prazo de refacção.
+          </div>
+          <div class="branch branch-yes">
+            <span class="branch-label">SIM (Objetivo atingido)</span><br />
+            Marca <span class="status st-concluido">Concluído</span> e dispara devolutiva formativa individual ao estudante.
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow">↓</div>
+
+      <!-- Decisão 3 -->
+      <div class="decision-box">
+        <div class="decision-title">PONTO DE DECISÃO 3 (Administrativo): Período letivo encerrado e notas consolidadas?</div>
+        <div class="branches">
+          <div class="branch branch-no">
+            <span class="branch-label">NÃO</span><br />
+            Mantém histórico ativo para consulta do estudante, professor e acompanhamento pedagógico.
+          </div>
+          <div class="branch branch-yes">
+            <span class="branch-label">SIM</span><br />
+            Migra notas finais para o diário oficial e executa o <strong>descarte</strong> dos arquivos temporários.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Mapeamento das Etapas -->
+    <h2>2. Mapeamento das Etapas Operacionais</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Etapa</th>
+            <th>Definição e Regra de Funcionamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Entrada</strong></td>
+            <td>Formulário digital único (Google Forms / tarefa AVA) com upload de arquivo ou link, eliminando entregas paralelas por mensagens.</td>
+          </tr>
+          <tr>
+            <td><strong>Identificação do estudante</strong></td>
+            <td>Coleta obrigatória de matrícula (chave única), nome completo, turma e identificador da atividade, somados ao carimbo automático de data/hora.</td>
+          </tr>
+          <tr>
+            <td><strong>Validação</strong></td>
+            <td>Checagem automática de campos obrigatórios, extensão permitida (PDF, imagem, documento) e tamanho, seguida de conferência rápida de legibilidade pelo docente.</td>
+          </tr>
+          <tr>
+            <td><strong>Armazenamento</strong></td>
+            <td>Pasta única institucional organizada por <code>Turma &gt; Atividade</code>, indexada a uma planilha mestre que centraliza status, datas e links diretos.</td>
+          </tr>
+          <tr>
+            <td><strong>Status (Ação Pedagógica)</strong></td>
+            <td>
+              <span class="status st-pendente">Pendente</span> Não entregue no prazo → aciona lembrete/busca ativa.<br />
+              <span class="status st-ajuste">Devolvido para ajuste</span> Erro técnico/arquivo corrompido → aguarda reenvio.<br />
+              <span class="status st-analise">Em análise</span> Recebido e válido → na fila de correção.<br />
+              <span class="status st-intervencao">Em intervenção</span> Entregue com erro conceitual → demanda apoio e refacção.<br />
+              <span class="status st-concluido">Concluído</span> Objetivo atingido e devolutiva entregue.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Forma de devolutiva</strong></td>
+            <td>Comentário objetivo baseado em rubrica simples (o que acertou + o que ajustar), entregue por e-mail institucional ou mural individual do estudante.</td>
+          </tr>
+          <tr>
+            <td><strong>Descarte</strong></td>
+            <td>Após o fechamento do bimestre/semestre e o prazo de revisão de notas, os conceitos finais são consolidados no diário oficial e os arquivos brutos/temporários são excluídos ao término do ano letivo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. Papéis e Permissões de Acesso -->
+    <h2>3. Papéis e Governança de Acesso (Quem Vê e Quem Altera)</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Papel</th>
+            <th style="width: 39%;">O que pode VER</th>
+            <th style="width: 39%;">O que pode ALTERAR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Estudante</strong></td>
+            <td>Apenas o próprio comprovante de envio, o seu status atual e a sua devolutiva individual (sem acesso aos dados dos colegas).</td>
+            <td>Pode enviar e reenviar o próprio arquivo enquanto o status estiver <em>Pendente</em>, <em>Devolvido para ajuste</em> ou <em>Em intervenção</em>. Não altera status nem notas.</td>
+          </tr>
+          <tr>
+            <td><strong>Professor</strong></td>
+            <td>Todos os envios, arquivos, histórico de versões e o painel consolidado de pendências e intervenções da turma.</td>
+            <td>Altera status, preenche rubricas, escreve devolutivas, reabre prazos de refacção e realiza o arquivamento/descarte final.</td>
+          </tr>
+          <tr>
+            <td><strong>Coordenação / Apoio Pedagógico</strong></td>
+            <td>Painel resumido de entregas e lista de estudantes em status <em>Pendente</em> ou <em>Em intervenção</em> (somente leitura).</td>
+            <td>Não altera arquivos, status ou avaliações; usa o indicador para articular busca ativa e apoio escolar.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Conexão entre Registro e Ação Pedagógica</strong>
+      <p>
+        O controle digital não serve apenas para cobrar prazos: os status <em>Pendente</em> e <em>Em intervenção</em> funcionam como gatilhos imediatos para o professor identificar quem precisa de acompanhamento antes do encerramento do bimestre.
+      </p>
+    </div>
+  </main>
+</body>
+</html>
