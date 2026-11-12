@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Protótipo Hipermídia - Criptografia</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.6; max-width: 720px; margin: 2rem auto; padding: 0 1rem; background: #f8fafc; color: #0f172a; }
+    nav.orientacao { background: #e2e8f0; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.9rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; }
+    main { background: #ffffff; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .no { display: none; }
+    .no.ativo { display: block; }
+    .links-acao { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #cbd5e1; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    button, a.btn { background: #2563eb; color: #fff; border: none; padding: 0.6rem 1rem; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 0.95rem; }
+    button.secundario { background: #475569; }
+    button:focus, a.btn:focus { outline: 3px solid #f59e0b; outline-offset: 2px; }
+    .midia-info { background: #f1f5f9; border-left: 4px solid #2563eb; padding: 1rem; margin: 1rem 0; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <nav class="orientacao" aria-label="Orientação de navegação">
+    <span id="breadcrumb">Localização: Nó 1 de 6 — Início</span>
+    <span>Atalhos: Teclas 1 a 6 ou Tab + Enter</span>
+  </nav>
+
+  <main>
+    <!-- NÓ 1 -->
+    <section id="no-1" class="no ativo">
+      <h1>1. Como suas mensagens viajam em segurança?</h1>
+      <p>Escolha como deseja explorar o conceito de <strong>Criptografia</strong>:</p>
+      <div class="links-acao">
+        <button onclick="irPara(2, 'Início > Definição')">Percurso Principal: Começar pela Definição</button>
+        <button class="secundario" onclick="irPara(3, 'Início > Exemplo')">Percurso Alternativo: Ver um Exemplo Real</button>
+        <button class="secundario" onclick="irPara(5, 'Início > Atividade')">Ir direto para o Desafio</button>
+      </div>
+    </section>
+
+    <!-- NÓ 2 -->
+    <section id="no-2" class="no">
+      <h1>2. Definição: Simétrica vs. Assimétrica</h1>
+      <p><strong>Simétrica:</strong> A mesma chave tranca e destranca a mensagem (ex.: senha de um arquivo ZIP).</p>
+      <p><strong>Assimétrica:</strong> Usa um par de chaves matemáticas — uma <em>Pública</em> (todos podem usar para trancar) e uma <em>Privada</em> (só o dono usa para abrir).</p>
+      <div class="links-acao">
+        <button onclick="irPara(3, 'Início > Definição > Exemplo')">Avançar: Exemplo Real</button>
+        <button class="secundario" onclick="irPara(6, 'Início > Definição > Aprofundamento')">Aprofundar: Algoritmos</button>
+        <button class="secundario" onclick="irPara(1, 'Início')">Voltar ao Início</button>
+      </div>
+    </section>
+
+    <!-- NÓ 3 -->
+    <section id="no-3" class="no">
+      <h1>3. Exemplo: O Cadeado do Navegador (HTTPS)</h1>
+      <p>Ao acessar um banco, seu navegador recebe a <strong>Chave Pública</strong> do servidor para proteger seus dados antes do envio.</p>
+      <div class="midia-info" role="img" aria-label="Diagrama textual mostrando Navegador cifrando dados com Chave Pública e Servidor decifrando com Chave Privada">
+        [Navegador] --(Dados + Chave Pública)--> [Internet] --(Chave Privada abre)--> [Servidor Banco]
+      </div>
+      <div class="links-acao">
+        <button onclick="irPara(4, 'Início > Exemplo > Demonstração')">Testar na Demonstração</button>
+        <button class="secundario" onclick="irPara(2, 'Início > Definição')">Consultar Definição</button>
+      </div>
+    </section>
+
+    <!-- NÓ 4 -->
+    <section id="no-4" class="no">
+      <h1>4. Demonstração Interativa</h1>
+      <p>Simule o envio da palavra <strong>"PROVA"</strong> usando uma cifra de deslocamento (+1 letra):</p>
+      <button onclick="document.getElementById('resultado-demo').textContent = 'Texto cifrado enviado na rede: QSPWB'">Cifrar Mensagem</button>
+      <p id="resultado-demo" aria-live="polite" style="font-weight: bold; margin-top: 0.5rem;"></p>
+      <div class="links-acao">
+        <button onclick="irPara(5, 'Início > Demonstração > Atividade')">Ir para a Atividade</button>
+        <button class="secundario" onclick="irPara(3, 'Início > Exemplo')">Voltar ao Exemplo</button>
+      </div>
+    </section>
+
+    <!-- NÓ 5 -->
+    <section id="no-5" class="no">
+      <h1>5. Atividade de Verificação</h1>
+      <p><strong>Cenário:</strong> Você precisa enviar uma senha para um colega sem que vocês tenham combinado uma chave secreta antes. Qual abordagem usar?</p>
+      <div class="links-acao">
+        <button onclick="alert('Correto! A chave pública do colega permite cifrar sem troca prévia de segredo.'); irPara(6, 'Início > Atividade > Aprofundamento')">Criptografia Assimétrica</button>
+        <button class="secundario" onclick="alert('Ops! Na simétrica, vocês precisariam combinar a chave antes. Vamos revisar.'); irPara(2, 'Início > Atividade > Revisão')">Criptografia Simétrica</button>
+      </div>
+    </section>
+
+    <!-- NÓ 6 -->
+    <section id="no-6" class="no">
+      <h1>6. Aprofundamento: Criptografia Híbrida</h1>
+      <p>Na prática, sistemas modernos usam criptografia <strong>assimétrica (RSA/ECC)</strong> apenas no início da conexão para trocar uma chave temporária, e depois mudam para <strong>simétrica (AES)</strong>, que é muito mais rápida.</p>
+      <div class="links-acao">
+        <button onclick="irPara(1, 'Início')">Reiniciar Navegação</button>
+        <button class="secundario" onclick="irPara(5, 'Início > Atividade')">Refazer Atividade</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function irPara(numeroNo, trilha) {
+      document.querySelectorAll('.no').forEach(el => el.classList.remove('ativo'));
+      const alvo = document.getElementById('no-' + numeroNo);
+      alvo.classList.add('ativo');
+      document.getElementById('breadcrumb').textContent = `Localização: Nó ${numeroNo} de 6 — ${trilha}`;
+      const primeiroBotao = alvo.querySelector('button');
+      if (primeiroBotao) primeiroBotao.focus();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (['1','2','3','4','5','6'].includes(e.key)) {
+        irPara(Number(e.key), `Atalho direto para Nó ${e.key}`);
+      }
+    });
+  </script>
+</body>
+</html>
